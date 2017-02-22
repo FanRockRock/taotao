@@ -28,7 +28,7 @@ public class ItemController {
 	}
 	@RequestMapping("/item/list")
 	@ResponseBody
-	public EasyUIDataGridResult getItemList(Integer page,Integer rows){
+	public EasyUIDataGridResult getItemList(Integer page,Integer rows){//Integer类型可以为空，int不行
 		EasyUIDataGridResult result = itemService.getItemList(page, rows);
 		return result;
 	}
