@@ -7,6 +7,7 @@ import com.taotao.common.pojo.TaotaoResult;
 import com.taotao.common.utils.IDUtils;
 import com.taotao.mapper.TbItemDescMapper;
 import com.taotao.mapper.TbItemMapper;
+import com.taotao.mapper.TbItemParamItemMapper;
 import com.taotao.mapper.TbItemParamMapper;
 import com.taotao.pojo.TbItem;
 import com.taotao.pojo.TbItemDesc;
@@ -32,7 +33,7 @@ public class ItemServiceImpl implements ItemService {
 	@Autowired
 	private TbItemDescMapper itemDescMapper;
 	@Autowired
-	private TbItemParamMapper itemParamMapper;
+	private TbItemParamItemMapper itemParamItemMapper;
 
 	@Override
 	public TbItem getItemById(Long itemId) {
@@ -87,7 +88,7 @@ public class ItemServiceImpl implements ItemService {
 		tbItemParamItem.setCreated(date);
 		tbItemParamItem.setUpdated(date);
 		//插入数据
-		itemParamMapper.insert(tbItemParamItem);
+		itemParamItemMapper.insert(tbItemParamItem);
 
 		return TaotaoResult.ok();
 	}
