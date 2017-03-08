@@ -7,9 +7,11 @@ import com.taotao.common.pojo.TaotaoResult;
 import com.taotao.common.utils.IDUtils;
 import com.taotao.mapper.TbItemDescMapper;
 import com.taotao.mapper.TbItemMapper;
+import com.taotao.mapper.TbItemParamMapper;
 import com.taotao.pojo.TbItem;
 import com.taotao.pojo.TbItemDesc;
 import com.taotao.pojo.TbItemExample;
+import com.taotao.pojo.TbItemParamItem;
 import com.taotao.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +31,8 @@ public class ItemServiceImpl implements ItemService {
 	private TbItemMapper itemMapper;
 	@Autowired
 	private TbItemDescMapper itemDescMapper;
+	@Autowired
+	private TbItemParamMapper itemParamMapper;
 
 	@Override
 	public TbItem getItemById(Long itemId) {
@@ -55,7 +59,7 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public TaotaoResult createItem(TbItem item, String desc) {
+	public TaotaoResult createItem(TbItem item, String desc,String itemParam) {
 		//生成商品ID
 		long itemId = IDUtils.genItemId();
 		//补全TbItem属性
@@ -76,7 +80,16 @@ public class ItemServiceImpl implements ItemService {
 		//插入商品描述数据
 		itemDescMapper.insert(tbItemDesc);
 
-		return null;
+		//添加商品规格参数处理
+		TbItemParamItem tbItemParamItem = new TbItemParamItem();
+		tbItemParamItem.setItemId(itemId);
+		tbItemParamItem.setParamData(itemParam);
+		tbItemParamItem.setCreated(date);
+		tbItemParamItem.setUpdated(date);
+		//插入数据
+		itemParamMapper.insert(tbItemParamItem);
+
+		return TaotaoResult.ok();
 	}
 
 }
