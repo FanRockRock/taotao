@@ -15,5 +15,5 @@ target
 .metadata
 
 # ignore intellij files
-.idea
-.iml
+.idea/
+*.iml
