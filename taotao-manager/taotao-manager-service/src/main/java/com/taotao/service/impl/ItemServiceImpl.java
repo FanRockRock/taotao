@@ -55,7 +55,6 @@ public class ItemServiceImpl implements ItemService {
 		result.setTotal(pageInfo.getTotal());
 		result.setRows(list);
 		
-		
 		return result;
 	}
 
