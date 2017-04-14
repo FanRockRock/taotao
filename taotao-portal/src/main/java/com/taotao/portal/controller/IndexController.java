@@ -22,8 +22,8 @@ public class IndexController {
 
     @RequestMapping(value="/posttest",method = RequestMethod.POST)
     @ResponseBody
-    public String testHttpClient(@RequestBody Map map){
-        System.out.println(map.get("name")+":"+map.get("pass"));
+    public String testHttpClient(String name,String pass){
+        System.out.println(name+":"+pass);
         return "OK";
     }
 }
