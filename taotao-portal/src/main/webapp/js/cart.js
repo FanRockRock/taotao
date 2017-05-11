@@ -35,9 +35,9 @@ var TTCart = {
 			total += (eval(_this.attr("itemPrice")) * 10000 * eval(_this.val())) / 10000;
 		});
 		$(".totalSkuPrice").html(new Number(total/100).toFixed(2)).priceFormat({ //价格格式化插件
-			 prefix: '￥',
-			 thousandsSeparator: ',',
-			 centsLimit: 2
+			prefix: '￥',
+			thousandsSeparator: ',',
+			centsLimit: 2
 		});
 	}
 };
